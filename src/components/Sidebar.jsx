@@ -1,14 +1,14 @@
 import React from 'react'
-import Search from './Search'
+import  Search  from './Search'
 
 function Sidebar() {
   return (
-    <div className="card mt-2" style={ {height: '80vh'}}>
+    <div className='card mt-2' style={{height:'80vh'}}>
         <div className="card-header">
-            Sidebar
+            sidebar
         </div>
         <div className="card-body">
-            <Search />
+            <Search/>
         </div>
     </div>
   )

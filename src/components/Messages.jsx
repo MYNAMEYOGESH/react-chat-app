@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Pnf() {
+function Messages() {
   return (
     <div>
-      
+      Messages
     </div>
   )
 }
 
-export default Pnf
+export default Messages

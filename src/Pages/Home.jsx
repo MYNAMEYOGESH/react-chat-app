@@ -5,19 +5,19 @@ import Menu from '../components/Menu'
 
 function Home() {
   return (
-   <section id="home">
-    <Menu />
-    <div className="container">
-       <div className="row">
-       <div className="col-md-4 col-sm-4 col-lg-4 p-2">
-            <Sidebar/>
+    <section id='home'>
+        <Menu/>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-4 col-lg-4 col-sm-4 p-2">
+                    <Sidebar/>
+                </div>
+                <div className="col-md-8 col-lg-8 col-sm-8 p-2">
+                    <Chat/>
+                </div>
+            </div>
         </div>
-        <div className="col-md-8 col-sm-8 col-lg-8 p-2">
-            <Chat />
-        </div>
-       </div>
-    </div>
-   </section>
+    </section>
   )
 }
 

@@ -1,18 +1,18 @@
 import React from 'react'
 import Input from './Input'
-import Message from './Message'
+import Messages from './Messages'
 
 function Chat() {
   return (
-    <div className="card mt-2" style={ {height: '80vh'}}>
+    <div className='card mt-2' style={{height:'80vh'}}>
         <div className="card-header">
-           chart
+            chat
         </div>
         <div className="card-body">
-        <Message />
+            <Messages/>
         </div>
         <div className="card-footer">
-            <Input />
+           <Input/>
         </div>
     </div>
   )

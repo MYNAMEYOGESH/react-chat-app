@@ -1,44 +1,73 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { auth } from '../fireConfig';
+
 
 function Login() {
+    const [user,setUser] = useState({
+        email:"",
+        password: ""
+    })
+    const Navigate = useNavigate()// to redirect any path
+
+    // input handler
+    const readValue = (e) => {
+        const { name,value } = e.target
+        // console.log(`name =`, name, `, value =`, value)
+        setUser({...user, [name]: value })
+    }
+
+    // submitHandler
+    const submitHandler = async (e) => {
+        try {
+            e.preventDefault()
+            // console.log(`user =`, user)
+            await signInWithEmailAndPassword(auth,user.email,user.password)
+            toast.success("Login successful")
+            Navigate(`/`)
+        } catch (err) {
+            toast.error(err.message)
+        }
+    }
   return (
-    <section id="hero" className="d-flex alingn-item-center justify-content-center">
+    <section id="hero" className='d-flex align-items-center justify-content-center'>
     <div className="container">
         <div className="row">
             <div className="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-sm-12">
                 <div className="card">
                     <div className="card-header bg-dark">
-                        <h6 className="display text-center text-success">Login Here</h6>
+                        <h6 className="display-6 text-center text-success">Login Here</h6>
                     </div>
                     <div className="card-body">
-                        <form autoCapitalize="off">
-                           
-                            <div className="form-group mt-2">
-                                <label htmlFor="email">email</label>
-                                <input type="email" name='email' id='email' className='form-control' required />
-                            </div>
-                            <div className="form-group mt-2">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" name='password' id='password' className='form-control' required />
-                            </div>
-                           
-                            <div className="form-group mt-2">
+                        <form autoComplete="off" onSubmit={submitHandler}>
                              
-                                <input type="submit" value="Login" className="btn btn-success" />
-                            </div>
+                             <div className="form-group mt-2">
+                                <label htmlFor="email">Email</label>
+                                <input type="email" name="email" value={user.email} onChange={readValue} id="email"  
+                                className='form-control' required/>
+                             </div>
+                             <div className="form-group mt-2">
+                                <label htmlFor="password">Password</label>
+                                <input type="password" name="password" value={user.password} onChange={readValue} id="password"  
+                                className='form-control' required/>
+                             </div>
+                             
+                             <div className="form-group mt-2">
+                                <input type="submit" value="Login" className='btn btn-secondary'/>
+                             </div>
                         </form>
                     </div>
                     <div className="card-footer">
-                        <Link to={`/register`} className="btn btn-link">New user? Register Here</Link>
+                        <Link to={`/register`} className='btn.btn-link'>New user? Register Here</Link>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   </section>
+  </section>
   )
-  
 }
 
 export default Login
